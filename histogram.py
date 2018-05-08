@@ -2,7 +2,7 @@
 import csv
 import ML_functions as mlf
 import matplotlib.pyplot as plt
-
+from math import *
 data = list(csv.reader(open("dataset_train.csv")))
 subject_all = []
 subject_ravenclaw = [[],[],[],[],[],[],[],[],[],[],[],[],[]]
@@ -58,8 +58,8 @@ for index in range(13):
     #plt.subplot(7,2,index+1)
     avg_std = []
     for i, array in enumerate(subject_all):
-        avg_std.append(mlf.variance(array[index]))
-    std.append(mlf.variance(avg_std))
+        avg_std.append(sqrt(mlf.variance(array[index])))
+    std.append(sqrt(mlf.variance(avg_std)))
         #plt.hist(array[index],histtype='bar', alpha=0.3,ec='black', label=str(house_name[i])+ " "+str(name[index]))
         #plt.legend(loc='upper left', prop={'size': 5})
 #plt.show()
