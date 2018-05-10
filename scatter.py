@@ -15,7 +15,6 @@ def prepare_data(array, name):
 
 
 data = list(csv.reader(open("dataset_train.csv")))
-print (data)
 subject = [[],[],[],[],[],[],[],[],[],[],[],[],[]]
 name = []
 for row in data:
@@ -39,15 +38,21 @@ for array in subject:
 res = []
 for i in range(mlf.ml_len(subject)):
     for j in range(i+1, mlf.ml_len(subject)):
-        r = mlf.variance(subject[i]+subject[j])
-        res.append((i, j,r))
+        r1 = mlf.std(subject[i])
+        r2 = mlf.std(subject[j])
+        res.append((i, j,abs(r1-r2)))
 
-min_res = min(res, key = lambda t: t[2])
+min_res = []
+for elem in res:
+    min_res.append(elem[2])
+min_res = mlf.ml_min(min_res)
 
 for elem in res:
-    if elem[2] == min_res[2]:
+    if elem[2] == min_res:
         i = elem[0]
         j = elem[1]
         break
+
+print(name[i], name[j])
 plt.scatter(subject[i], subject[j], color=['red', 'blue'])
 plt.show()

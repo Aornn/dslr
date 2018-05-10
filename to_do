@@ -1,3 +1,0 @@
-describe :
-    faire les get_dats sur toutes les columns, verifier aue la column contienne des elem numériques
-    verifier que j'ai aucune fnc interdite, pas de count pas de len pas de min, max etc ...
