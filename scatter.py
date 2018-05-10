@@ -18,23 +18,30 @@ data = list(csv.reader(open("dataset_train.csv")))
 subject = [[],[],[],[],[],[],[],[],[],[],[],[],[]]
 name = []
 for row in data:
-    subject[0].append(row[6])
-    subject[1].append(row[7])
-    subject[2].append(row[8])
-    subject[3].append(row[9])
-    subject[4].append(row[10])
-    subject[5].append(row[11])
-    subject[6].append(row[12])
-    subject[7].append(row[13])
-    subject[8].append(row[14])
-    subject[9].append(row[15])
-    subject[10].append(row[16])
-    subject[11].append(row[17])
-    subject[12].append(row[18])
+    valid = 1
+    for elem in row:
+        if not elem:
+            valid = 0
+            break
+    if (valid == 1):
+        subject[0].append(row[6])
+        subject[1].append(row[7])
+        subject[2].append(row[8])
+        subject[3].append(row[9])
+        subject[4].append(row[10])
+        subject[5].append(row[11])
+        subject[6].append(row[12])
+        subject[7].append(row[13])
+        subject[8].append(row[14])
+        subject[9].append(row[15])
+        subject[10].append(row[16])
+        subject[11].append(row[17])
+        subject[12].append(row[18])
 
 for array in subject:
     array = prepare_data(array, name)
     array = mlf.normalize_array(array)
+
 res = []
 for i in range(mlf.ml_len(subject)):
     for j in range(i+1, mlf.ml_len(subject)):
@@ -53,6 +60,6 @@ for elem in res:
         j = elem[1]
         break
 
-print(name[i], name[j])
+print("The best values are for",name[i],"and" ,name[j])
 plt.scatter(subject[i], subject[j], color=['red', 'blue'])
 plt.show()

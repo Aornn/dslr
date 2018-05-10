@@ -11,6 +11,7 @@ def prepare_data(array, name):
             array[i] = 0
         else:
             array[i] = float(elem)
+
     return array
 
 def get_stats(array, name):
@@ -30,21 +31,28 @@ data = list(csv.reader(open("dataset_train.csv")))
 subject = [[],[],[],[],[],[],[],[],[],[],[],[],[]]
 name = []
 for row in data:
-    subject[0].append(row[6])
-    subject[1].append(row[7])
-    subject[2].append(row[8])
-    subject[3].append(row[9])
-    subject[4].append(row[10])
-    subject[5].append(row[11])
-    subject[6].append(row[12])
-    subject[7].append(row[13])
-    subject[8].append(row[14])
-    subject[9].append(row[15])
-    subject[10].append(row[16])
-    subject[11].append(row[17])
-    subject[12].append(row[18])
+    valid = 1
+    for elem in row:
+        if not elem:
+            valid = 0
+            break
+    if (valid == 1):
+        subject[0].append(row[6])
+        subject[1].append(row[7])
+        subject[2].append(row[8])
+        subject[3].append(row[9])
+        subject[4].append(row[10])
+        subject[5].append(row[11])
+        subject[6].append(row[12])
+        subject[7].append(row[13])
+        subject[8].append(row[14])
+        subject[9].append(row[15])
+        subject[10].append(row[16])
+        subject[11].append(row[17])
+        subject[12].append(row[18])
 
 for elem in subject:
     elem = prepare_data(elem, name)
+
 for i, elem in enumerate(subject):
     get_stats(elem, name[i])

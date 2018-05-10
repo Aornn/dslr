@@ -11,6 +11,7 @@ subject_gryffindor = [[],[],[],[],[],[],[],[],[],[],[],[],[]]
 subject_hufflepuf = [[],[],[],[],[],[],[],[],[],[],[],[],[]]
 house_name = ['Gryffindor','Hufflepuf','Ravenclaw','Slytherin']
 name = []
+
 def prepare_data(array):
     for i, elem in enumerate(array):
         if not elem:
@@ -27,26 +28,33 @@ while i != 19:
 for row in data:
     i = 6
     j = 0
-    if row[1] == 'Ravenclaw':
-        while i != 19:
-            subject_ravenclaw[j].append(row[i])
-            j = j + 1
-            i = i + 1
-    elif row[1] == 'Slytherin':
-        while i != 19:
-            subject_slytherin[j].append(row[i])
-            j = j + 1
-            i = i + 1
-    elif row[1] == 'Gryffindor':
-        while i != 19:
-            subject_gryffindor[j].append(row[i])
-            j = j + 1
-            i = i + 1
-    elif row[1] == 'Hufflepuff':
-        while i != 19:
-            subject_hufflepuf[j].append(row[i])
-            j = j + 1
-            i = i + 1
+    valid = 1
+    for elem in row:
+        if not elem:
+            valid = 0
+            break
+    if (valid == 1) :
+        if row[1] == 'Ravenclaw':
+            while i != 19:
+                subject_ravenclaw[j].append(row[i])
+                j = j + 1
+                i = i + 1
+        elif row[1] == 'Slytherin':
+            while i != 19:
+                subject_slytherin[j].append(row[i])
+                j = j + 1
+                i = i + 1
+        elif row[1] == 'Gryffindor':
+            while i != 19:
+                subject_gryffindor[j].append(row[i])
+                j = j + 1
+                i = i + 1
+        elif row[1] == 'Hufflepuff':
+            while i != 19:
+                subject_hufflepuf[j].append(row[i])
+                j = j + 1
+                i = i + 1
+
 subject_all = [subject_gryffindor, subject_hufflepuf, subject_ravenclaw, subject_slytherin]
 
 for elem in subject_all:
@@ -65,7 +73,7 @@ index = 0
 for i, elem in enumerate(std):
     if elem == mlf.ml_min(std):
         index = i
-index = 8
+
 plt.title(str(name[index]), loc='center')
 plt.hist(subject_gryffindor[index],histtype='bar', alpha=0.3,ec='black',label="Gryffindor")
 plt.hist(subject_hufflepuf[index],histtype='bar', alpha=0.3,ec='black',label="Hufflepuf")
