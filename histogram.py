@@ -28,12 +28,7 @@ while i != 19:
 for row in data:
     i = 6
     j = 0
-    valid = 1
-    for elem in row:
-        if not elem:
-            valid = 0
-            break
-    if (valid == 1) :
+    if (mlf.analyze_row(row)) :
         if row[1] == 'Ravenclaw':
             while i != 19:
                 subject_ravenclaw[j].append(row[i])

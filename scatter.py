@@ -18,12 +18,7 @@ data = list(csv.reader(open("dataset_train.csv")))
 subject = [[],[],[],[],[],[],[],[],[],[],[],[],[]]
 name = []
 for row in data:
-    valid = 1
-    for elem in row:
-        if not elem:
-            valid = 0
-            break
-    if (valid == 1):
+    if (mlf.analyze_row(row)):
         subject[0].append(row[6])
         subject[1].append(row[7])
         subject[2].append(row[8])
@@ -61,5 +56,8 @@ for elem in res:
         break
 
 print("The best values are for",name[i],"and" ,name[j])
+plt.title("Scatter plot")
 plt.scatter(subject[i], subject[j], color=['red', 'blue'])
+plt.xlabel(name[i])
+plt.ylabel(name[j])
 plt.show()

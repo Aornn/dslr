@@ -4,3 +4,4 @@ from .quartile import *
 from .std import *
 from .min_max_len import *
 from .variance import *
+from .analyze_row import *
