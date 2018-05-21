@@ -15,7 +15,7 @@ def prepare_data(array):
 
 def writer(weights, value):
     house_name = ['Ravenclaw','Slytherin','Hufflepuff','Gryffindor']
-    f = open('/tmp/'+house_name[value-1]+'.csv', 'w')
+    f = open('/tmp/'+house_name[value-1]+'.csv', 'w+')
     for i in range(len(weights)):
         f.write(str(weights[i]))
         if (i != len(weights) - 1):
@@ -31,6 +31,7 @@ def get_weights(X, y, value):
             array[i] = 1
     array = np.transpose(array)
     weights = training(X,array)
+    writer(weights, value)#ligne à changer si probleme
 
 if __name__ == '__main__':
     data = list(csv.reader(open("dataset_train.csv")))
@@ -63,6 +64,7 @@ if __name__ == '__main__':
         p = Process(target=get_weights, args=(X,y,i,))
         p.start()
     p.join()
+
     house_name = ['Ravenclaw','Slytherin','Hufflepuff','Gryffindor']
     weights = []
     for elem in house_name:
