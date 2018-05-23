@@ -2,7 +2,7 @@
 import csv, sys
 from compute_grad import *
 import ML_functions as mlf
-import matplotlib.pyplot as plt
+import time
 import numpy as np
 from multiprocessing import Process
 
@@ -37,7 +37,7 @@ def write_weight():
     house_name = ['Ravenclaw','Slytherin','Hufflepuff','Gryffindor']
     weights = []
     for elem in house_name:
-        data = csv.reader(open('/tmp/'+elem+'.csv'))
+        data = csv.reader(open('/tmp/'+elem+'.csv','r'))
         for row in data:
             weights.append(row)
     f = open('weights.csv', 'w')
@@ -81,6 +81,7 @@ if __name__ == '__main__':
     X = np.concatenate((ones, X), axis=1)
     for i in range(1,5):
         p = Process(target=get_weights, args=(X,y,i,))
+        #time.sleep(1)
         p.start()
     p.join()
     write_weight()
